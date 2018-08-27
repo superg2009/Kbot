@@ -1,7 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const prefix = process.env.prefix;
 const token = process.env.token;
+const prefix = process.env.prefix;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -72,7 +72,8 @@ client.on('message', message => {
 	}
 
 });
-if(token === '') {
+if(token === undefined) {
 	console.log('error token not defined');
+	process.exit(1);
 }
 client.login(token);
