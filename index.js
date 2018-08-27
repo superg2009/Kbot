@@ -1,6 +1,7 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const prefix = process.env.prefix;
+const token = process.env.token;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -12,7 +13,6 @@ for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-
 client.on('ready', () => {
 	console.log('Ready!');
 });
@@ -72,4 +72,7 @@ client.on('message', message => {
 	}
 
 });
+if(token === '') {
+	console.log('error token not defined');
+}
 client.login(token);
