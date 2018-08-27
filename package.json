@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "description": "bot for discord",
   "main": "index.js",
+  "engines": {
+    "node":"8.x",
+    "npm":"*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
+    "start": "node index.js",
     "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superg2009/Kbot.git"
   },
   "author": "superg2009",
   "license": "ISC",
