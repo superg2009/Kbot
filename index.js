@@ -1,14 +1,16 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+// token and prefix are gathered from the environment allowing different keys per environment
+// heroku local uses .env file provided by dev and heroku hosted uses config set with main account key
 const token = process.env.token;
 const prefix = process.env.prefix;
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-
+// get all files in the commands folder that are javascript
 const commandFiles = fs.readdirSync('./commands').filter(file=> file.endsWith('.js'));
-
+// add commands from folder to pool of commands
 for(const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
@@ -16,20 +18,28 @@ for(const file of commandFiles) {
 client.on('ready', () => {
 	console.log('Ready!');
 });
+// when a new message is sent by DM or in a channel the bot is in this event fires
 client.on('message', message => {
+	if(message === 'anyone alive') {
+		message.channel.send('I am!');
+	}
+	// put all non prefixed reponse code above
+	// if message doesn't have the prefix or is a bot itself do not reply
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
-
+	// get the arguments passed with command
 	const args = message.content.slice(prefix.length).split('/ +/');
+	// find the command name and lowercase it for processing
 	const commandName = args.shift().toLowerCase();
-
+	// see if command or an alias exists
 	const command = client.commands.get(commandName)
     || client.commands.find(cmd=> cmd.aliases && cmd.aliases.includes(commandName));
 
 	if (!command) return;
-
+	// check if command is restricted to guilds only
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!');
 	}
+	// sanity check to check if command requires args ex a kick command
 	if(command.args && !args.length) {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
 
@@ -70,23 +80,20 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('there was an error tring to execute that command!');
 	}
-	if(message === 'anyone alive') {
-		message.channel.send('I am!');
-	}
 });
-
+// when a new member joins this fires
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find(ch => ch.name === 'general');
 	if(!channel) return;
 	channel.send(`Welcome to the Server, ${member}`);
 });
-
+// when a user leaves the guild
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.find(ch => ch.name === 'general');
 	if(!channel) return;
 	channel.send(`Goodbye, ${member} :(`);
 });
-
+// when the ban hammer is used on a member
 client.on('guildBanAdd', member=>{
 	const channel = member.guild.channels.find(ch => ch.name === 'general');
 	if(!channel) return;
