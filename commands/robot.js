@@ -2,7 +2,7 @@ module.exports = {
 	name: 'robot',
 	aliases: ['areyoubot', 'bot'],
 	cooldown: 6,
-	description:'exetenial questions',
+	description:'existetial questions',
 	args: false,
 	guildOnly:false,
 	execute(message, args) {

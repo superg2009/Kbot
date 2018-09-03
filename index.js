@@ -70,10 +70,28 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('there was an error tring to execute that command!');
 	}
-
+	if(message === 'anyone alive') {
+		message.channel.send('I am!');
+	}
 });
-if(token === undefined) {
-	console.log('error token not defined');
-	process.exit(1);
-}
+
+client.on('guildMemberAdd', member => {
+	const channel = member.guild.channels.find(ch => ch.name === 'general');
+	if(!channel) return;
+	channel.send(`Welcome to the Server, ${member}`);
+});
+
+client.on('guildMemberRemove', member => {
+	const channel = member.guild.channels.find(ch => ch.name === 'general');
+	if(!channel) return;
+	channel.send(`Goodbye, ${member} :(`);
+});
+
+client.on('guildBanAdd', member=>{
+	const channel = member.guild.channels.find(ch => ch.name === 'general');
+	if(!channel) return;
+	channel.send(`get Keked, ${member} `);
+});
+
+
 client.login(token);
