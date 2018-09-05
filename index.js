@@ -20,9 +20,11 @@ client.on('ready', () => {
 });
 // when a new message is sent by DM or in a channel the bot is in this event fires
 client.on('message', message => {
-	if(message === 'anyone alive') {
+	/*
+	if(message.content === 'is anyone alive') {
 		message.channel.send('I am!');
 	}
+	*/
 	// put all non prefixed reponse code above
 	// if message doesn't have the prefix or is a bot itself do not reply
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
