@@ -83,3 +83,6 @@ config.json
 
 # dot env
 .env
+
+#idea
+.idea
