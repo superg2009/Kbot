@@ -6,7 +6,6 @@ module.exports = {
 	args: false,
 	guildOnly:true,
 	execute(message, args) {
-		const kappa = message.guild.emojis.find('name', 'K_');
-		message.channel.send(`${kappa}`);
+		message.channel.send(`:K_: `);
 	},
 };

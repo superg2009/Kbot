@@ -18,7 +18,6 @@ for(const file of commandFiles) {
 }
 client.on('ready', () => {
 	console.log('Ready!');
-	checkNitain();
 });
 // when a new message is sent by DM or in a channel the bot is in this event fires
 client.on('message', message => {
@@ -104,14 +103,5 @@ client.on('guildBanAdd', member=>{
 	channel.send(`get Keked, ${member} `);
 });
 
- function checkNitain() {
-	request({
-		url: 'https://api.warframestat.us/pc/alerts',
-		json: true,
-	}, function(error, response, body) {
-		console.log(error);
-		let alerts = JSON.parse(body);
-		
-	});
- }
+ 
 client.login(token);
