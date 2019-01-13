@@ -6,6 +6,7 @@ module.exports = {
 	args: false,
 	guildOnly:false,
 	execute(message, args) {
+		// Pong
 		message.channel.send('Pong.');
 	},
 };
