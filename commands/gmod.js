@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'gmod',
-	aliases: ['collection,gmodaddons'],
+	aliases: ['collection','gmodaddons'],
 	cooldown: 15,
 	description:'whats the link for Gbananas again?',
 	args: false,
