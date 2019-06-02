@@ -7,6 +7,6 @@ module.exports = {
 	args: false,
 	guildOnly:false,
 	execute(message, args) {
-        message.channel.send('https://i.redd.it/6mstow9ybyd21.jpg');
+        message.channel.send('https://i.redd.it/9k9rsj3g7bf21.png');
     }
 }
