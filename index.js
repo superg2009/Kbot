@@ -1,11 +1,15 @@
+if(process.env.NODE_ENV != 'production'){
+	require('dotenv').config();
+}
 const fs = require('fs');
 const Discord = require('discord.js');
 const request = require('request');
 // token and prefix are gathered from the environment allowing different keys per environment
 // heroku local uses .env file provided by dev and heroku hosted uses config set with main account key
-const token = process.env.token;
-const prefix = process.env.prefix;
+const token = process.env.TOKEN;
+const prefix = process.env.PREFIX;
 
+//console.log(`Token is ${token}`);
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
@@ -104,4 +108,6 @@ client.on('guildBanAdd', member=>{
 });
 
  
-client.login(token);
+client.login(token).catch(function(error){
+	console.error(error);
+});

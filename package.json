@@ -4,7 +4,7 @@
   "description": "bot for discord",
   "main": "index.js",
   "engines": {
-    "node": "8.x",
+    "node": "10.x",
     "npm": "*"
   },
   "scripts": {
@@ -19,8 +19,9 @@
   "author": "superg2009",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.2",
-    "eslint": "^5.8.0",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^5.16.0",
     "request": "^2.88.0"
   }
 }
