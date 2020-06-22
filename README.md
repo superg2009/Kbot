@@ -4,7 +4,7 @@ Discord bot using DiscordJS & NodeJS. This is not meant to be an eleborate bot b
 # Set Up
 - git clone repository
 - npm install
-- setup heroku project with two (2) env variables PREFIX (ex ! or ?) and TOKEN which is your bots api token.
+- setup heroku project with two (2) env variables PREFIX (ex ! or ?) which distinguishes commands for Kbot and TOKEN which is your bots api token.
 - local environment uses dotenv and a .env file
 
 # Running

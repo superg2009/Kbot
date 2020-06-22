@@ -8,5 +8,6 @@ module.exports = {
 	execute(message, args) {
 		const kappa=message.guild.emojis.find('name', 'K_');
 		message.channel.send(`${kappa}`);
+		//TODO: remove callers message
 	},
 };
