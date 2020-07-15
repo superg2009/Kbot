@@ -5,7 +5,7 @@ module.exports = {
 	description:'Jesse what makes Radiation again ?!',
 	args: false,
 	guildOnly:false,
-	execute(message, args) {
+	execute(message) {
 		message.channel.send('https://i.redd.it/dabd9442mnfy.png');
 	},
 };

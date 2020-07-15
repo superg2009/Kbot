@@ -1,4 +1,3 @@
-
 module.exports = {
 	name: 'wficons',
 	aliases: ['icons'],
@@ -6,7 +5,7 @@ module.exports = {
 	description:'WTF are these Icons in W.F',
 	args: false,
 	guildOnly:false,
-	execute(message, args) {
-        message.channel.send('https://i.redd.it/9k9rsj3g7bf21.png');
-    }
-}
+	execute(message) {
+		message.channel.send('https://i.redd.it/9k9rsj3g7bf21.png');
+	},
+};

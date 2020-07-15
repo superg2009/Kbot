@@ -5,9 +5,8 @@ module.exports = {
 	description:'get a load of this guy',
 	args: false,
 	guildOnly:true,
-	execute(message, args) {
-		const kappa=message.guild.emojis.find('name', 'K_');
+	execute(message) {
+		const kappa = message.guild.emojis.find('name', 'K_');
 		message.channel.send(`${kappa}`);
-		//TODO: remove callers message
 	},
 };

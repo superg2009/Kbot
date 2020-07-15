@@ -5,7 +5,7 @@ module.exports = {
 	description:'existential questions',
 	args: false,
 	guildOnly:false,
-	execute(message, args) {
+	execute(message) {
 		message.channel.send('No, I\'m not a robot....Or am I 😐');
 	},
 };
