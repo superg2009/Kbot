@@ -1,6 +1,7 @@
 if(process.env.NODE_ENV != 'production') {
 	require('dotenv').config();
 }
+const winston = require('winston');
 const fs = require('fs');
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
@@ -8,6 +9,13 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
+
+const logger = winston.createLogger({
+	transports: [
+		new winston.transports.Console(),
+	],
+	format: winston.format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
+});
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -19,7 +27,7 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
-	console.log('Ready!');
+	logger.log('info', 'The bot is online!');
 });
 
 client.on('message', message => {
@@ -71,7 +79,7 @@ client.on('message', message => {
 		command.execute(message, args);
 	}
 	catch (error) {
-		console.error(error);
+		logger.log('error', error);
 		message.reply('there was an error trying to execute that command!');
 	}
 });
