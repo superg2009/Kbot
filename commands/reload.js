@@ -1,10 +1,4 @@
-const winston = require('winston');
-const logger = winston.createLogger({
-	transports: [
-		new winston.transports.Console(),
-	],
-	format: winston.format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
-});
+const logger = require('../utils/logger');
 module.exports = {
 	name: 'reload',
 	description: 'Reloads a command',

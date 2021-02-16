@@ -1,13 +1,7 @@
 require('dotenv').config();
-const winston = require('winston');
+const logger = require('../utils/logger');
 const prefix = process.env.PREFIX;
 
-const logger = winston.createLogger({
-	transports: [
-		new winston.transports.Console(),
-	],
-	format: winston.format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
-});
 module.exports = {
 	name: 'help',
 	description: 'List all of my commands or info about a specific command.',
