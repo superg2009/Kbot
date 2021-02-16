@@ -1,21 +1,15 @@
 if(process.env.NODE_ENV != 'production') {
 	require('dotenv').config();
 }
-const winston = require('winston');
+
 const fs = require('fs');
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 const Discord = require('discord.js');
+const logger = require('utils/logger');
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
-
-const logger = winston.createLogger({
-	transports: [
-		new winston.transports.Console(),
-	],
-	format: winston.format.printf(log => `[${log.level.toUpperCase()}] - ${log.message}`),
-});
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -33,14 +27,15 @@ client.once('ready', () => {
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
+	/* get arguments from the users message */
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const commandName = args.shift().toLowerCase();
-
+	/* find commandName in list of current commands and their aliases */
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
 	if (!command) return;
-
+	// Discord calls servers Guilds internally
 	if (command.guildOnly && message.channel.type !== 'text') {
 		return message.reply('I can\'t execute that command inside DMs!');
 	}
@@ -54,7 +49,7 @@ client.on('message', message => {
 
 		return message.channel.send(reply);
 	}
-
+	/* implement cooldowns to prevent abuse, which is rare for my use cases */
 	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Discord.Collection());
 	}
