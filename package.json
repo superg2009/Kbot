@@ -19,9 +19,10 @@
   "author": "superg2009",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "eslint": "^5.16.0",
-    "request": "^2.88.0"
+    "request": "^2.88.2",
+    "winston": "^3.3.3"
   }
 }

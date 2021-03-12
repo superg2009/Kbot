@@ -5,7 +5,7 @@ module.exports = {
 	description:'Plains Time, Day or Night?',
 	args: false,
 	guildOnly:false,
-	execute(message, args) {
+	execute(message) {
 		const request = require('request');
 		request({
 			url: 'https://api.warframestat.us/pc/cetusCycle',

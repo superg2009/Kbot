@@ -5,7 +5,7 @@ module.exports = {
 	description:'Ping!',
 	args: false,
 	guildOnly:false,
-	execute(message, args) {
+	execute(message) {
 		// Pong
 		message.channel.send('Pong.');
 	},
