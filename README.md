@@ -1,5 +1,6 @@
 # Kbot
 Discord bot using DiscordJS & NodeJS. This is not meant to be an eleborate bot but just some utility functions and cool things for my friends and to learn some NodeJS and modern Development and Deployment
+# Work has been moved to kbot2 https://github.com/superg2009/kbot2
 
 # Set Up
 - git clone repository
